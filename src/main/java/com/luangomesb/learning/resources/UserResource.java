@@ -11,18 +11,20 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/users")
+
 public class UserResource {
+
 	@Autowired
 	UserService userService;
+
 	@GetMapping
 	public ResponseEntity<List<User>> findAll() {
 		List<User> usersList = userService.findAll();
-
 		return ResponseEntity.ok().body(usersList);
 	}
 
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<User> findById(@PathVariable Long id){
+	public ResponseEntity<User> findById(@PathVariable Long id) {
 		User user = userService.findById(id);
 		return ResponseEntity.ok().body(user);
 	}

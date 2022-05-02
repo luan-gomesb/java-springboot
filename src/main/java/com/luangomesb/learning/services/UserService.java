@@ -1,7 +1,7 @@
 package com.luangomesb.learning.services;
 
 import com.luangomesb.learning.entities.User;
-import com.luangomesb.learning.repositories.UserReposity;
+import com.luangomesb.learning.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,13 +14,13 @@ We have yet @Repository and @Service to do this, just for semantic
 @Service
 public class UserService {
     @Autowired
-    private UserReposity userRepository;
+    private UserRepository userRepository;
 
-    public List<User> findAll(){
+    public List<User> findAll() {
         return userRepository.findAll();
     }
 
-    public User findById(Long id){
+    public User findById(Long id) {
         Optional<User> userObj = userRepository.findById(id);
         return userObj.get();
     }
