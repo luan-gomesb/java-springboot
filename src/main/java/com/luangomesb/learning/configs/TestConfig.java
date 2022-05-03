@@ -1,8 +1,10 @@
 package com.luangomesb.learning.configs;
 
+import com.luangomesb.learning.entities.Category;
 import com.luangomesb.learning.entities.Order;
 import com.luangomesb.learning.entities.User;
 import com.luangomesb.learning.enums.OrderStatus;
+import com.luangomesb.learning.repositories.CategoryRepository;
 import com.luangomesb.learning.repositories.OrderRepository;
 import com.luangomesb.learning.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +23,15 @@ public class TestConfig implements CommandLineRunner {
     private UserRepository userReposity;
     @Autowired
     private OrderRepository orderRepository;
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     @Override
     public void run(String... args) throws Exception {
+        Category c1 = new Category(null, "Electronics");
+        Category c2 = new Category(null, "Books");
+        Category c3 = new Category(null, "Computers");
+
         User u1 = new User(null, "Maria Brown", "maria@gmail.com", "988888888", "123456");
         User u2 = new User(null, "Alex Green", "alex@gmail.com", "977777777", "123456");
 
@@ -33,5 +41,6 @@ public class TestConfig implements CommandLineRunner {
 
         userReposity.saveAll(Arrays.asList(u1, u2));
         orderRepository.saveAll(Arrays.asList(o1, o2, o3));
+        categoryRepository.saveAll(Arrays.asList(c1, c2, c3));
     }
 }
