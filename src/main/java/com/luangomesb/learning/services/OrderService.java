@@ -1,7 +1,6 @@
 package com.luangomesb.learning.services;
 
 import com.luangomesb.learning.entities.Order;
-import com.luangomesb.learning.entities.User;
 import com.luangomesb.learning.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
