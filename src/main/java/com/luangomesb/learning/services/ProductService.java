@@ -3,6 +3,7 @@ package com.luangomesb.learning.services;
 import java.util.List;
 import java.util.Optional;
 
+import com.luangomesb.learning.entities.Category;
 import com.luangomesb.learning.entities.Product;
 import com.luangomesb.learning.repositories.ProductRepository;
 
@@ -22,4 +23,5 @@ public class ProductService {
     Optional<Product> optProduct = productRepository.findById(id);
     return optProduct.get();
   }
+
 }

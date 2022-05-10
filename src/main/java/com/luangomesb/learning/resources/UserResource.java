@@ -4,9 +4,11 @@ import com.luangomesb.learning.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.luangomesb.learning.entities.User;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -27,5 +29,14 @@ public class UserResource {
 	public ResponseEntity<User> findById(@PathVariable Long id) {
 		User user = userService.findById(id);
 		return ResponseEntity.ok().body(user);
+	}
+
+	@PostMapping
+	public ResponseEntity<User> saveUser(@RequestBody User obj) {
+		User createdUser = userService.save(obj);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+				.path("/{id}").buildAndExpand(createdUser.getId())
+				.toUri();
+		return ResponseEntity.created(uri).body(createdUser);
 	}
 }
