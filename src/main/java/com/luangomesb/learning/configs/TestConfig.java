@@ -3,6 +3,7 @@ package com.luangomesb.learning.configs;
 import com.luangomesb.learning.entities.Category;
 import com.luangomesb.learning.entities.Order;
 import com.luangomesb.learning.entities.OrderItem;
+import com.luangomesb.learning.entities.Payment;
 import com.luangomesb.learning.entities.Product;
 import com.luangomesb.learning.entities.User;
 import com.luangomesb.learning.enums.OrderStatus;
@@ -65,7 +66,7 @@ public class TestConfig implements CommandLineRunner {
         User u1 = new User(null, "Maria Brown", "maria@gmail.com", "988888888", "123456");
         User u2 = new User(null, "Alex Green", "alex@gmail.com", "977777777", "123456");
 
-        Order o1 = new Order(null, Instant.parse("2019-06-20T19:53:07Z"), OrderStatus.DELIVERED, u1);
+        Order o1 = new Order(null, Instant.parse("2019-06-20t19:53:07z"), OrderStatus.DELIVERED, u1);
         Order o2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"), OrderStatus.WAITING_PAYMENT, u2);
         Order o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), OrderStatus.PAID, u1);
 
@@ -78,5 +79,15 @@ public class TestConfig implements CommandLineRunner {
         OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice());
 
         orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
+
+        // little refactor because we ned save the order before do the association
+        // wee make a new payment associated with our order
+        Payment pay1 = new Payment(null, Instant.parse("2019-06-20T21:53:07Z"), o1);
+        // so w'll set the order payment with or new payment
+        o1.setPayment(pay1);
+        // we'll make the order repository update the order, and he will save our
+        // payment in his own table
+        orderRepository.save(o1);
+
     }
 }
