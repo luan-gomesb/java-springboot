@@ -2,6 +2,7 @@ package com.luangomesb.learning.resources;
 
 import com.luangomesb.learning.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -38,5 +39,11 @@ public class UserResource {
 				.path("/{id}").buildAndExpand(createdUser.getId())
 				.toUri();
 		return ResponseEntity.created(uri).body(createdUser);
+	}
+
+	@PutMapping(value = "/{id}", consumes = "application/json")
+	public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User obj){
+		obj = userService.update(id,obj);
+		return ResponseEntity.ok().body(obj);
 	}
 }
