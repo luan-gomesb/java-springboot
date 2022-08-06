@@ -41,9 +41,8 @@ public class UserService {
         entity.setPhone(obj.getPhone());
     }
 
-    public boolean delete(Long id) {
+    public void delete(Long id) {
         User user = userRepository.getById(id);
         userRepository.delete(user);
-        return false;
     }
 }

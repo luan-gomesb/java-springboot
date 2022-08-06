@@ -50,6 +50,6 @@ public class UserResource {
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<User> deleteUser(@PathVariable Long id) {
 		userService.delete(id);
-		return ResponseEntity.ok().body(null);
+		return ResponseEntity.ok().build();
 	}
 }
