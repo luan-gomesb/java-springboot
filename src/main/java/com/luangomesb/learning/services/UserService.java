@@ -28,7 +28,8 @@ public class UserService {
     public User save(User user) {
         return userRepository.save(user);
     }
-    public User update(Long uid,User obj){
+
+    public User update(Long uid, User obj) {
         User entity = userRepository.getOne(uid);
         updateData(entity, obj);
         return userRepository.save(entity);
@@ -40,4 +41,9 @@ public class UserService {
         entity.setPhone(obj.getPhone());
     }
 
+    public boolean delete(Long id) {
+        User user = userRepository.getById(id);
+        userRepository.delete(user);
+        return false;
+    }
 }

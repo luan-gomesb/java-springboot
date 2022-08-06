@@ -42,8 +42,14 @@ public class UserResource {
 	}
 
 	@PutMapping(value = "/{id}", consumes = "application/json")
-	public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User obj){
-		obj = userService.update(id,obj);
+	public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User obj) {
+		obj = userService.update(id, obj);
 		return ResponseEntity.ok().body(obj);
+	}
+
+	@DeleteMapping(value = "/{id}")
+	public ResponseEntity<User> deleteUser(@PathVariable Long id) {
+		userService.delete(id);
+		return ResponseEntity.ok().body(null);
 	}
 }
