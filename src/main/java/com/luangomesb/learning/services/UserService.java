@@ -33,10 +33,15 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User update(Long uid, User obj) {
-        User entity = userRepository.getOne(uid);
-        updateData(entity, obj);
-        return userRepository.save(entity);
+    public User update(Long id, User obj) {
+        try {
+            User entity = userRepository.getOne(id);
+            updateData(entity, obj);
+            return userRepository.save(entity);
+        }catch (RuntimeException e){
+            e.printStackTrace();
+            throw new ResourceNotFoundException(id);
+        }
     }
 
     private void updateData(User entity, User obj) {
