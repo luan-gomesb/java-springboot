@@ -1,0 +1,4 @@
+postgres://qweetbgyhcohry:
+85e7b708037fde8750f03b3dbd400470f022b890cf637f259ed0d791e508b7cf@
+ec2-3-217-113-25.compute-1.amazonaws.com:5432/
+dehkla3kof35vs
